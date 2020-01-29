@@ -17,5 +17,16 @@ namespace ATM_TDD
         {
             return Balance;
         }
+
+        public void Withdraw()
+        {
+            Balance -= 10;
+            //Balance = Balance - 10;
+        }
+
+        public void Deposit()
+        {
+            Balance += 50;
+        }
     }
 }
