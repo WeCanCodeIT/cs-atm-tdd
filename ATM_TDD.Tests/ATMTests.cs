@@ -18,10 +18,24 @@ namespace ATM_TDD.Tests
             Assert.Equal(100.00, myAtm.Balance);
         }
         
-        // CheckBalance() should return balance of 200
+        // CheckBalance() should return balance of 50
+        [Fact]
+        public void CheckBalance_Check_Our_Balance()
+        {
+            //Arrange
+            ATM myAtm = new ATM();
+            myAtm.Balance = 50.00;
 
-        // Withdrawal should reduce balance by 10 dollars
+            //Act
+            double myBalance = myAtm.CheckBalance();
 
-        // Deposit should increase balance by 50 dollars
+            //Assert
+            Assert.Equal(myAtm.Balance, myBalance);
+        }
+
+            // Withdrawal should reduce balance by 10 dollars
+
+            // Deposit should increase balance by 50 dollars
+      
     }
 }

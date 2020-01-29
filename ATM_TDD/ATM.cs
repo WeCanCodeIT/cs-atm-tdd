@@ -12,5 +12,10 @@ namespace ATM_TDD
         {
             Balance = 100.00;
         }
+
+        public double CheckBalance()
+        {
+            return Balance;
+        }
     }
 }
