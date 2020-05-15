@@ -12,7 +12,7 @@ namespace ATM_TDD.Tests
             accountUnderTest = new Account();
         }
 
-        // Test that a new account has balance of 0
+        // Test that a new account has balance of 100
         [Fact]
         public void New_Account_Should_Have_Balance_Of_100()
         {
@@ -30,31 +30,31 @@ namespace ATM_TDD.Tests
         [Fact]
         public void CheckBalance_Should_Return_Balance_Of_50()
         {
-            ////Arrange
-            //// Account object is instantiated in test constructor
-            //accountUnderTest.Balance = 50.00;
+            //Arrange
+            // Account object is instantiated in test constructor
+            accountUnderTest.Balance = 50.00;
 
-            ////Act
-            //double myBalance = accountUnderTest.CheckBalance();
+            //Act
+            double myBalance = accountUnderTest.CheckBalance();
 
-            ////Assert
-            //Assert.Equal(accountUnderTest.Balance, myBalance);
+            //Assert
+            Assert.Equal(accountUnderTest.Balance, myBalance);
         }
 
         // Test that Withdraw() method reduces balance by 10 dollars
         [Fact]
         public void Withdraw_Decreases_Balance_By_10()
         {
-            ////Arrange
-            //// Account object is instantiated in test constructor
-            //accountUnderTest.Balance = 50.00;
-            //var startingBalance = accountUnderTest.Balance;
+            //Arrange
+            // Account object is instantiated in test constructor
+            accountUnderTest.Balance = 50.00;
+            var startingBalance = accountUnderTest.Balance;
 
-            ////Act
-            //accountUnderTest.Withdraw();
+            //Act
+            accountUnderTest.Withdraw();
 
-            ////Assert
-            //Assert.Equal(startingBalance - 10, accountUnderTest.Balance);
+            //Assert
+            Assert.Equal(startingBalance - 10, accountUnderTest.Balance);
         }
 
         // Test that Deposit() method increases balance by 50 dollars
