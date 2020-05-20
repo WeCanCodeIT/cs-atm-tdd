@@ -103,5 +103,21 @@ namespace ATM_TDD.Tests
             Assert.Equal(startingBalance - withdrawalAmount, accountUnderTest.Balance);
         }
 
+        // Test that user cannot withdraw a given amount if it creates a negative balance
+        [Fact]
+        public void Withdraw_of_Given_Amount_Should_Be_Rejected_If_Creates_Negative_Balance()
+        {
+            // Arrange
+            accountUnderTest.Balance = 10.00;
+            double withdrawalAmount = 50.00;
+
+            // Act
+            accountUnderTest.Withdraw(withdrawalAmount);
+
+            // Assert
+            Assert.True(accountUnderTest.Balance >= 0);
+        }
+
+
     }
 }
