@@ -74,7 +74,7 @@ namespace ATM_TDD.Tests
         }
 
         // Test that user cannot withdraw if funds are insufficient
-        [Fact]
+        [Fact(Skip ="Refactored into another method")]
         public void Withdraw_10_Should_Be_Rejected_If_Creates_Negative_Balance()
         {
             // Arrange
@@ -104,7 +104,7 @@ namespace ATM_TDD.Tests
         }
 
         // Test that user cannot withdraw a given amount if it creates a negative balance
-        [Fact]
+        [Fact(Skip = "Refactored into another method")]
         public void Withdraw_of_Given_Amount_Should_Be_Rejected_If_Creates_Negative_Balance()
         {
             // Arrange
@@ -118,6 +118,19 @@ namespace ATM_TDD.Tests
             Assert.True(accountUnderTest.Balance >= 0);
         }
 
+        // Test that sufficient funds are available
+        [Fact]
+        public void VerifySufficientFunds_Should_Return_False_if_Inadequate_Funds_Available()
+        {
+            // Arrange
+            accountUnderTest.Balance = 10.00;
+            double withdrawalAmount = 50.00;
 
+            // Act
+            bool sufficientFunds = accountUnderTest.VerifySufficientFunds(withdrawalAmount);
+
+            // Assert
+            Assert.False(sufficientFunds);
+        }
     }
 }
