@@ -20,8 +20,24 @@ namespace ATM_TDD
 
         public void Withdraw()
         {
-            // Balance = Balance - 10.00;
-            Balance -= 10.00;
+            if(Balance - 10.00 >= 0)
+            {
+                Balance -= 10.00;
+            }
+            else
+            {
+                Console.WriteLine("You do not have sufficient funds for this withdrawal");
+            }
+        }
+
+        public void Withdraw(double amount)
+        {
+            Balance = Balance - amount;
+        }
+
+        public void Deposit()
+        {
+            Balance += 50.00;
         }
     }
 }

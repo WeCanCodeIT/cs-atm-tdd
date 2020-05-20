@@ -61,19 +61,47 @@ namespace ATM_TDD.Tests
         [Fact]
         public void Deposit_Increases_Balance_By_50()
         {
-            ////Arrange
-            //// Account object is instantiated in test constructor
-            //accountUnderTest.Balance = 50.00;
-            //var startingBalance = accountUnderTest.Balance;
+            //Arrange
+            // Account object is instantiated in test constructor
+            accountUnderTest.Balance = 50.00;
+            var startingBalance = accountUnderTest.Balance;
 
-            ////Act
-            //accountUnderTest.Deposit();
+            //Act
+            accountUnderTest.Deposit();
 
-            ////Assert
-            //Assert.Equal(startingBalance + 50, accountUnderTest.Balance);
+            //Assert
+            Assert.Equal(startingBalance + 50, accountUnderTest.Balance);
         }
 
+        // Test that user cannot withdraw if funds are insufficient
+        [Fact]
+        public void Withdraw_10_Should_Be_Rejected_If_Creates_Negative_Balance()
+        {
+            // Arrange
+            accountUnderTest.Balance = 5.00;
 
+            // Act
+            accountUnderTest.Withdraw();
+
+            // Assert
+            Assert.True(accountUnderTest.Balance >= 0);
+        }
+
+        // Test that user can withdraw given amount
+        [Fact]
+        public void Withdraw_Should_Decrease_Balance_By_Given_Amount()
+        {
+            // Arrange
+            accountUnderTest.Balance = 100.00;
+            double startingBalance = accountUnderTest.Balance;
+            double withdrawalAmount = 17.50;
+
+            // Act
+            accountUnderTest.Withdraw(withdrawalAmount);
+
+            // Assert
+            Assert.Equal(startingBalance - withdrawalAmount, accountUnderTest.Balance);
+        }
 
     }
 }

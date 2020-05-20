@@ -32,7 +32,8 @@ namespace ATM_TDD
                         Console.WriteLine("You withdrew $10");
                         break;
                     case "3":
-                        Console.WriteLine("Sorry, this ATM cannot make deposits.");
+                        myAccount.Deposit();
+                        Console.WriteLine("You deposited $50");
                         break;
                     case "4":
                         Console.WriteLine("Good-bye! Thanks for banking with us.");
