@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ATM_TDD
 {
@@ -7,7 +8,23 @@ namespace ATM_TDD
         static void Main(string[] args)
         {
             Account myAccount = new Account();
-            
+
+            List<Account> ListOfAccounts = new List<Account>();
+            Checking checkingAccount = new Checking()
+            {
+                AccountNumber = "12354",
+                NickName = "First Checking"
+            };
+
+            ListOfAccounts.Add(checkingAccount); 
+
+            ListOfAccounts.Add(new Savings()
+            { 
+                AccountNumber = "S09843",
+                NickName = "Goal Savings"
+            });
+
+
             Console.WriteLine("Welcome to ATM Machine");
 
             bool continueBanking = true ;
@@ -18,15 +35,19 @@ namespace ATM_TDD
                 Console.WriteLine("2. Withdraw $10");
                 Console.WriteLine("3. Deposit $50.00");
                 Console.WriteLine("4. Withdraw any amount");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. Show my accounts");
+                Console.WriteLine("6. Write a check");
+                Console.WriteLine("7. Exit");
 
                 string atmChoice = Console.ReadLine();
 
                 switch (atmChoice)
                 {
                     case "1":
-                        double currentBalance = myAccount.CheckBalance();
-                        Console.WriteLine($"Your current balance is ${currentBalance}");
+                        foreach(Account account in ListOfAccounts)
+                        {
+                            account.CheckBalance();
+                        }
                         break;
                     case "2":
                         if (myAccount.VerifySufficientFunds(10.00))
@@ -42,12 +63,26 @@ namespace ATM_TDD
                     case "4":
                         Console.Write("How much would you like to withdraw? ");
                         double withdrawalAmount = Convert.ToDouble(Console.ReadLine());
-                        if (myAccount.VerifySufficientFunds(withdrawalAmount))
+                        foreach(Account account in ListOfAccounts)
                         {
-                            myAccount.Withdraw(withdrawalAmount);
+                            if (account.VerifySufficientFunds(withdrawalAmount))
+                            {
+                                account.Withdraw(withdrawalAmount);
+                            }
                         }
                         break;
                     case "5":
+                        foreach (Account account in ListOfAccounts)
+                        {
+                            Console.WriteLine($"{account.NickName} {account.Balance:C2}");
+                        }
+                        break;
+                    case "6":
+                        Console.Write("How much would you like to write check for? ");
+                        double checkAmount = Convert.ToDouble(Console.ReadLine());
+                        checkingAccount.WriteCheck(checkAmount);
+                        break;
+                    case "7":
                         Console.WriteLine("Good-bye! Thanks for banking with us.");
                         continueBanking = false;
                         break;
